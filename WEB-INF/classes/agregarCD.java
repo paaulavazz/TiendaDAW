@@ -18,10 +18,5 @@ public class agregarCD extends HttpServlet {
         String precioString = t.nextToken().trim(); // Obtenemos el precio del CD
         double precio = Double.parseDouble(precioString.substring(1)); // Eliminamos el signo "$" y convertimos a double
 
-        // Lógica para agregar el CD seleccionado al carrito de compras
-        // Esto puede variar dependiendo de cómo estés implementando el carrito de compras
-
-        // Redirigir a una página de confirmación
-        response.sendRedirect("confirmacion.html");
     }
 }
