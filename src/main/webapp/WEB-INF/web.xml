@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="4.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
+    <servlet>
+        <servlet-name>SvAgregarCD</servlet-name>
+        <servlet-class>servlets.SvAgregarCD</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SvCaja</servlet-name>
+        <servlet-class>servlets.SvCaja</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SvCarritoCompra</servlet-name>
+        <servlet-class>servlets.SvCarritoCompra</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SvAgregarCD</servlet-name>
+        <url-pattern>/SvAgregarCD</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SvCaja</servlet-name>
+        <url-pattern>/SvCaja</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SvCarritoCompra</servlet-name>
+        <url-pattern>/SvCarritoCompra</url-pattern>
+    </servlet-mapping>
+</web-app>
