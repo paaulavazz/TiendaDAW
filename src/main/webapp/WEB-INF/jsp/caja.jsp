@@ -33,23 +33,11 @@
 </head>
 <body bgcolor="#FDF5E6">
     <center>
-        <h1>Carrito de la compra</h1>
+        <h1>Caja</h1>
         <table border="1">
         <tr>
-            <th>TITULO DEL CD</th>
-            <th>Cantidad</th>
-            <th>Importe</th>
+            <td colspan="3">TOTAL A PAGAR</td>
         </tr>
-        <!-- Aquí se agregarán las filas con los CDs seleccionados -->
-        </table>
-    
-        <br>
-        
-        <table border="1">
-        <tr>
-            <td colspan="3">IMPORTE TOTAL</td>
-        </tr>
-        <!-- Aquí se agregará la fila con el importe total -->
         </table>
     </center>
 <br>
@@ -57,14 +45,9 @@
   <hr class="short-hr">
   <div class="centered">
     <div class="image-container">
-      <a href="index.html"><img src="./imagenes/sigo_comprando.gif" alt="Sigo comprando"></a>
+      <a href="index.html"><img src="./imagenes/musica.gif" alt="Pagar y volver a la página principal"></a>
       <br>
-      Sigo comprando
-    </div>
-    <div class="image-container">
-      <a href="/tienda/SvCarritoCompra?accion=pagar"><img src="./imagenes/me_largo_a_pagar.jpg" alt="Me largo a pagar"></a>
-      <br>
-      Me largo a pagar
+      Pagar y voler a la página principal
     </div>
   </div>
   <hr class="short-hr">
