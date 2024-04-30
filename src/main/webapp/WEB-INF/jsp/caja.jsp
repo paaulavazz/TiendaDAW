@@ -29,6 +29,9 @@
     .short-hr {
       width: 50%; /* Ajusta la longitud de la línea horizontal */
     }
+    table {
+        background-color: white; 
+    }
   </style>
 </head>
 <body bgcolor="#FDF5E6">

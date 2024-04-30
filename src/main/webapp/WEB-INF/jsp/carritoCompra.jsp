@@ -1,9 +1,6 @@
-<%-- 
-    Document   : carritoCompra
-    Created on : 15-abr-2024, 11:23:58
-    Author     : Paula Vázquez Tella
---%>
-
+<%@page import="java.util.List"%>
+<%@page import="models.CD"%>
+<%@page import="java.text.DecimalFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -29,27 +26,59 @@
     .short-hr {
       width: 50%; /* Ajusta la longitud de la línea horizontal */
     }
+    .titulo-cd {
+        padding-right: 200px;
+        text-align: left;
+    }
+    .col {
+        padding-right: 50px;
+    }
+    .suma-total {
+        text-align: center;
+    }
+    table {
+        background-color: white;
+    }
   </style>
 </head>
 <body bgcolor="#FDF5E6">
     <center>
         <h1>Carrito de la compra</h1>
         <table border="1">
-        <tr>
-            <th>TITULO DEL CD</th>
-            <th>Cantidad</th>
-            <th>Importe</th>
-        </tr>
-        <!-- Aquí se agregarán las filas con los CDs seleccionados -->
+            <tr>
+                <th class="titulo-cd">TITULO DEL CD</th>
+                <th class="col">Cantidad</th>
+                <th class="col">Importe</th>
+            </tr>
+            <!-- Iterar sobre cada CD en el carrito -->
+            <% 
+                double total = 0.0; // Variable para almacenar el importe total
+                List<CD> carrito = (List<CD>) session.getAttribute("carrito");
+                if(carrito != null) {
+                    for(CD cd : carrito) {
+                        double importe = cd.getPrecio() * cd.getCantidad();
+                        total += importe;
+            %>
+            <tr>
+                <td class="titulo-cd"><%= cd.getNombre() %> | <%= cd.getArtista() %> | <%= cd.getPais() %> | $<%= cd.getPrecio() %></td>
+                <td class="col"><%= cd.getCantidad() %></td>
+                <td class="col"><%= importe %></td>
+            </tr>
+            <% 
+                    }
+                }
+            %>
         </table>
     
         <br>
         
         <table border="1">
-        <tr>
-            <td colspan="3">IMPORTE TOTAL</td>
-        </tr>
-        <!-- Aquí se agregará la fila con el importe total -->
+            <tr>
+                <th>IMPORTE TOTAL</td>
+            </tr>  
+            <tr>
+                <td colspan="5" class="suma-total"><%= new DecimalFormat("0.00").format(total) %></td>
+            </tr>
         </table>
     </center>
 <br>
@@ -70,4 +99,3 @@
   <hr class="short-hr">
 </body>
 </html>
-
