@@ -30,11 +30,24 @@
         padding-right: 200px;
         text-align: left;
     }
-    .col {
-        padding-right: 50px;
+    .col-cantidad {
+        padding-right: 70px;
+    }
+    .col-precio {
+        padding-right: 30px;
+    }
+    .col-radio {
+        padding-left: 30px;
+        padding-right: 30px;
     }
     .suma-total {
         text-align: center;
+    }
+    .cantidad-total {
+        text-align: left;
+    }
+    .celda-sin-borde {
+        border: none;
     }
     table {
         background-color: white;
@@ -47,8 +60,9 @@
         <table border="1">
             <tr>
                 <th class="titulo-cd">TITULO DEL CD</th>
-                <th class="col">Cantidad</th>
-                <th class="col">Importe</th>
+                <th class="col-cantidad">Cantidad</th>
+                <th class="col-precio">Importe</th>
+                <th class="celda-sin-borde"></th>
             </tr>
             <!-- Iterar sobre cada CD en el carrito -->
             <% 
@@ -58,26 +72,27 @@
                     for(CD cd : carrito) {
                         double importe = cd.getPrecio() * cd.getCantidad();
                         total += importe;
+                        
+                // Formatear el importe total con cinco decimales
+                String totalFormateado = String.format("%.5f", total);
             %>
             <tr>
                 <td class="titulo-cd"><%= cd.getNombre() %> | <%= cd.getArtista() %> | <%= cd.getPais() %> | $<%= cd.getPrecio() %></td>
-                <td class="col"><%= cd.getCantidad() %></td>
-                <td class="col"><%= importe %></td>
+                <td class="col-cantidad"><%= cd.getCantidad() %></td>
+                <td class="col-precio"><%= importe %></td>
+                <td class="col-radio"><input type="radio" name="eliminar" value="<%= cd.getNombre() %>"></td>
             </tr>
             <% 
                     }
                 }
             %>
-        </table>
-    
-        <br>
-        
-        <table border="1">
             <tr>
-                <th>IMPORTE TOTAL</td>
-            </tr>  
-            <tr>
-                <td colspan="5" class="suma-total"><%= new DecimalFormat("0.00").format(total) %></td>
+                <td colspan="1" class="celda-sin-borde"></td>
+                <td colspan="1" class="suma-total">IMPORTE TOTAL</td>
+                <td colspan="1" class="cantidad-total"><%= new DecimalFormat("0.00").format(total) %></td>
+                <td colspan="1" align="center">
+                    <button type="submit" name="eliminarBtn" value="eliminar">Eliminar</button>
+                </td>
             </tr>
         </table>
     </center>
