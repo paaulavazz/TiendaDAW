@@ -55,62 +55,63 @@
   </style>
 </head>
 <body bgcolor="#FDF5E6">
-    <center>
-        <h1>Carrito de la compra</h1>
-        <table border="1">
-            <tr>
-                <th class="titulo-cd">TITULO DEL CD</th>
-                <th class="col-cantidad">Cantidad</th>
-                <th class="col-precio">Importe</th>
-                <th class="celda-sin-borde"></th>
-            </tr>
-            <!-- Iterar sobre cada CD en el carrito -->
-            <% 
-                double total = 0.0; // Variable para almacenar el importe total
-                List<CD> carrito = (List<CD>) session.getAttribute("carrito");
-                if(carrito != null) {
-                    for(CD cd : carrito) {
-                        double importe = cd.getPrecio() * cd.getCantidad();
-                        total += importe;
-                        
-                // Formatear el importe total con cinco decimales
-                String totalFormateado = String.format("%.5f", total);
-            %>
-            <tr>
-                <td class="titulo-cd"><%= cd.getNombre() %> | <%= cd.getArtista() %> | <%= cd.getPais() %> | $<%= cd.getPrecio() %></td>
-                <td class="col-cantidad"><%= cd.getCantidad() %></td>
-                <td class="col-precio"><%= importe %></td>
-                <td class="col-radio"><input type="radio" name="eliminar" value="<%= cd.getNombre() %>"></td>
-            </tr>
-            <% 
+    <form action="/tienda/SvCarritoCompra" method="post"> <!-- Formulario para eliminar CD -->
+        <center>
+            <h1>Carrito de la compra</h1>
+            <table border="1">
+                <tr>
+                    <th class="titulo-cd">TITULO DEL CD</th>
+                    <th class="col-cantidad">Cantidad</th>
+                    <th class="col-precio">Importe</th>
+                    <th class="celda-sin-borde"></th>
+                </tr>
+                <!-- Iterar sobre cada CD en el carrito -->
+                <% 
+                    double total = 0.0; // Variable para almacenar el importe total
+                    List<CD> carrito = (List<CD>) session.getAttribute("carrito");
+                    if(carrito != null) {
+                        for(int i = 0; i < carrito.size(); i++) {
+                            CD cd = carrito.get(i);
+                            double importe = cd.getPrecio() * cd.getCantidad();
+                            total += importe;
+                %>
+                <tr>
+                    <td class="titulo-cd"><%= cd.getNombre() %> | <%= cd.getArtista() %> | <%= cd.getPais() %> | $<%= cd.getPrecio() %></td>
+                    <td class="col-cantidad"><%= cd.getCantidad() %></td>
+                    <td class="col-precio"><%= importe %></td>
+                    <td class="col-radio">
+                        <input type="radio" name="eliminar" value="<%= i %>"> <!-- Pasando el índice como valor -->
+                    </td>
+                </tr>
+                <% 
+                        }
                     }
-                }
-            %>
-            <tr>
-                <td colspan="1" class="celda-sin-borde"></td>
-                <td colspan="1" class="suma-total">IMPORTE TOTAL</td>
-                <td colspan="1" class="cantidad-total"><%= new DecimalFormat("0.00").format(total) %></td>
-                <td colspan="1" align="center">
-                    <button type="submit" name="eliminarBtn" value="eliminar">Eliminar</button>
-                </td>
-            </tr>
-        </table>
-    </center>
-<br>
-
-  <hr class="short-hr">
-  <div class="centered">
-    <div class="image-container">
-      <a href="index.html"><img src="./imagenes/sigo_comprando.gif" alt="Sigo comprando"></a>
-      <br>
-      Sigo comprando
+                %>
+                <tr>
+                    <td colspan="1" class="celda-sin-borde"></td>
+                    <td colspan="1" class="suma-total">IMPORTE TOTAL</td>
+                    <td colspan="1" class="cantidad-total"><%= new DecimalFormat("0.00").format(total) %></td>
+                    <td colspan="1" align="center">
+                        <button type="submit" name="eliminarBtn" value="eliminar">Eliminar</button>
+                    </td>
+                </tr>
+            </table>
+        </center>
+    </form>
+    <br>
+    <hr class="short-hr">
+    <div class="centered">
+        <div class="image-container">
+            <a href="index.html"><img src="./imagenes/sigo_comprando.gif" alt="Sigo comprando"></a>
+            <br>
+            Sigo comprando
+        </div>
+        <div class="image-container">
+            <a href="/tienda/SvCarritoCompra?accion=pagar"><img src="./imagenes/me_largo_a_pagar.jpg" alt="Me largo a pagar"></a>
+            <br>
+            Me largo a pagar
+        </div>
     </div>
-    <div class="image-container">
-      <a href="/tienda/SvCarritoCompra?accion=pagar"><img src="./imagenes/me_largo_a_pagar.jpg" alt="Me largo a pagar"></a>
-      <br>
-      Me largo a pagar
-    </div>
-  </div>
-  <hr class="short-hr">
+    <hr class="short-hr">
 </body>
 </html>

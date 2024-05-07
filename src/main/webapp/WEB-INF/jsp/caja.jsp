@@ -1,14 +1,9 @@
-<%-- 
-    Document   : carritoCompra
-    Created on : 15-abr-2024, 11:23:58
-    Author     : Paula Vázquez Tella
---%>
-
+<%@page import="java.text.DecimalFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Carrito de la compra</title>
+  <title>Caja</title>
   <style>
     .centered {
       text-align: center;
@@ -38,22 +33,23 @@
     <center>
         <h1>Caja</h1>
         <table border="1">
-        <tr>
-            <td colspan="3">TOTAL A PAGAR</td>
-        </tr>
+            <tr>
+                <td colspan="3"><b>TOTAL A PAGAR</b></td>
+            </tr>
+            <tr>
+                <td colspan="3" style="text-align: center;"><%= new DecimalFormat("0.00").format(request.getAttribute("total")) %></td>
+            </tr>
         </table>
     </center>
-<br>
-
-  <hr class="short-hr">
-  <div class="centered">
-    <div class="image-container">
-      <a href="index.html"><img src="./imagenes/musica.gif" alt="Pagar y volver a la página principal"></a>
-      <br>
-      Pagar y voler a la página principal
+    <br>
+    <hr class="short-hr">
+    <div class="centered">
+        <div class="image-container">
+            <a href="index.html"><img src="./imagenes/musica.gif" alt="Pagar y volver a la página principal"></a>
+            <br>
+            Pagar y volver a la página principal
+        </div>
     </div>
-  </div>
-  <hr class="short-hr">
+    <hr class="short-hr">
 </body>
 </html>
-
