@@ -1,7 +1,5 @@
 package controllers;
 
-
-
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -13,15 +11,9 @@ import models.CD;
 
 public class SvCarritoCompra extends HttpServlet {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
-        processRequest(request, response);
 
         String accion = request.getParameter("accion");
         if ("pagar".equals(accion)) {
@@ -57,7 +49,6 @@ public class SvCarritoCompra extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
 
         // Verifica si se ha enviado la solicitud de eliminación
         String eliminarBtn = request.getParameter("eliminarBtn");
@@ -78,12 +69,6 @@ public class SvCarritoCompra extends HttpServlet {
         // Vuelve a cargar la página del carrito usando forward en lugar de sendRedirect
         request.getRequestDispatcher("/WEB-INF/jsp/carritoCompra.jsp").forward(request, response);
 
-    }
-
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
     }
 
 }

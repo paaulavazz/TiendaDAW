@@ -42,10 +42,16 @@
         </table>
     </center>
     <br>
+    <form id="paymentForm" action="SvCaja" method="post" style="display: none;">
+        <input type="hidden" name="accion" value="pagar">
+    </form>
+    
     <hr class="short-hr">
     <div class="centered">
         <div class="image-container">
-            <a href="index.html"><img src="./imagenes/musica.gif" alt="Pagar y volver a la página principal"></a>
+            <a href="#" onclick="document.getElementById('paymentForm').submit();">
+                <img src="./imagenes/musica.gif" alt="Pagar y volver a la página principal">
+            </a>
             <br>
             Pagar y volver a la página principal
         </div>

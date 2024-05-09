@@ -45,19 +45,7 @@ public class SvAgregarCD extends HttpServlet {
             session.setAttribute("carrito", carrito);
         }
         carrito.add(cd);
-
         request.getRequestDispatcher("/WEB-INF/jsp/carritoCompra.jsp").forward(request, response);
     }
     
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
 }
