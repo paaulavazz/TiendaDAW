@@ -1,3 +1,4 @@
+<%@page import="models.Carrito"%>
 <%@page import="java.util.List"%>
 <%@page import="models.CD"%>
 <%@page import="java.text.DecimalFormat"%>
@@ -68,10 +69,11 @@
                 <!-- Iterar sobre cada CD en el carrito -->
                 <% 
                     double total = 0.0; // Variable para almacenar el importe total
-                    List<CD> carrito = (List<CD>) session.getAttribute("carrito");
+                    Carrito carrito = (Carrito) session.getAttribute("carrito");
                     if(carrito != null) {
-                        for(int i = 0; i < carrito.size(); i++) {
-                            CD cd = carrito.get(i);
+                        List<CD> listaCDs = carrito.getListaCDs();
+                        for(int i = 0; i < listaCDs.size(); i++) {
+                            CD cd = listaCDs.get(i);
                             double importe = cd.getPrecio() * cd.getCantidad();
                             total += importe;
                 %>

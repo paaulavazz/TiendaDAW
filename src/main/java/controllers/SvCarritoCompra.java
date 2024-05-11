@@ -6,7 +6,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import models.CD;
+import models.Carrito;
 
 
 public class SvCarritoCompra extends HttpServlet {
@@ -31,15 +33,15 @@ public class SvCarritoCompra extends HttpServlet {
     // Método para calcular el importe total
     private double calcularImporteTotal(HttpServletRequest request) {
         // Obtener el carrito de la sesión
-        List<CD> carrito = (List<CD>) request.getSession().getAttribute("carrito");
+        HttpSession session = request.getSession();
+        Carrito carrito = (Carrito) session.getAttribute("carrito");
+        List<CD> listaCDs = carrito.getListaCDs();
         double total = 0.0;
 
         // Iterar sobre cada CD en el carrito
-        if (carrito != null) {
-            for (CD cd : carrito) {
-                double importe = cd.getPrecio() * cd.getCantidad();
-                total += importe;
-            }
+        for (CD cd : listaCDs) {
+            double importe = cd.getPrecio() * cd.getCantidad();
+            total += importe;
         }
 
         return total;
@@ -50,25 +52,23 @@ public class SvCarritoCompra extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Verifica si se ha enviado la solicitud de eliminación
+        // Verificar si se ha enviado la solicitud de eliminación
         String eliminarBtn = request.getParameter("eliminarBtn");
         if ("eliminar".equals(eliminarBtn)) {
-            // Obtiene el índice del CD a eliminar
+            // Obtener el índice del CD a eliminar
             int indiceEliminar = Integer.parseInt(request.getParameter("eliminar"));
 
-            // Obtiene el carrito de la sesión
-            List<CD> carrito = (List<CD>) request.getSession().getAttribute("carrito");
+            // Obtener el carrito de la sesión
+            HttpSession session = request.getSession();
+            Carrito carrito = (Carrito) session.getAttribute("carrito");
 
-            // Verifica si el índice está dentro del rango válido
-            if (indiceEliminar >= 0 && indiceEliminar < carrito.size()) {
-                // Elimina el CD del carrito
-                carrito.remove(indiceEliminar);
-            }
+            // Eliminar el CD del carrito
+            carrito.eliminarCD(indiceEliminar);
         }
 
-        // Vuelve a cargar la página del carrito usando forward en lugar de sendRedirect
+        // Volver a cargar la página del carrito usando forward en lugar de sendRedirect
         request.getRequestDispatcher("/WEB-INF/jsp/carritoCompra.jsp").forward(request, response);
-
     }
+
 
 }

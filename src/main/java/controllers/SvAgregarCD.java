@@ -9,6 +9,7 @@ import java.util.*;
 import javax.servlet.http.HttpSession;
 
 import models.CD;
+import models.Carrito;
 
 /**
  *
@@ -39,12 +40,12 @@ public class SvAgregarCD extends HttpServlet {
 
         // Almacenamos el objeto CD en el carrito de la compra
         HttpSession session = request.getSession(true);
-        List<CD> carrito = (List<CD>) session.getAttribute("carrito");
+        Carrito carrito = (Carrito) session.getAttribute("carrito");
         if (carrito == null) {
-            carrito = new ArrayList<>();
+            carrito = new Carrito();
             session.setAttribute("carrito", carrito);
         }
-        carrito.add(cd);
+        carrito.agregarCD(cd);
         request.getRequestDispatcher("/WEB-INF/jsp/carritoCompra.jsp").forward(request, response);
     }
     
