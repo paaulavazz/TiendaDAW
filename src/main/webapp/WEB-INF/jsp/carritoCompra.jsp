@@ -80,7 +80,7 @@
                 <tr>
                     <td class="titulo-cd"><%= cd.getNombre() %> | <%= cd.getArtista() %> | <%= cd.getPais() %> | $<%= cd.getPrecio() %></td>
                     <td class="col-cantidad"><%= cd.getCantidad() %></td>
-                    <td class="col-precio"><%= importe %></td>
+                    <td class="col-precio"><%= new DecimalFormat("0.00").format(importe) %></td>
                     <td class="col-radio">
                         <input type="radio" name="eliminar" value="<%= i %>"> <!-- Pasando el índice como valor -->
                     </td>
