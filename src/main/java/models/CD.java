@@ -7,11 +7,17 @@ import java.io.Serializable;
  * @author Paula Vázquez Tella
  */
 public class CD implements Serializable {
+
     private String nombre;
     private String artista;
     private String pais;
     private double precio;
     private int cantidad;
+    private double subtotal;
+
+    public CD() {
+
+    }
 
     public CD(String nombre, String artista, String pais, double precio, int cantidad) {
         this.nombre = nombre;
@@ -19,6 +25,7 @@ public class CD implements Serializable {
         this.pais = pais;
         this.precio = precio;
         this.cantidad = cantidad;
+        subtotal = precio * cantidad;
     }
 
     public String getNombre() {
@@ -51,6 +58,7 @@ public class CD implements Serializable {
 
     public void setPrecio(double precio) {
         this.precio = precio;
+        setSubtotal();
     }
 
     public int getCantidad() {
@@ -59,6 +67,15 @@ public class CD implements Serializable {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+        setSubtotal();
     }
-    
+
+    public double getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal() {
+        subtotal = cantidad * precio;
+    }
+
 }
