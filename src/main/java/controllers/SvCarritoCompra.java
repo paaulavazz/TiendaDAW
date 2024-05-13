@@ -18,8 +18,18 @@ public class SvCarritoCompra extends HttpServlet {
 
         String accion = request.getParameter("accion");
         if ("pagar".equals(accion)) {
+
+            // Obtener el carrito de la sesión
+            HttpSession session = request.getSession();
+            Carrito carrito = (Carrito) session.getAttribute("carrito");
+
             // Redireccionar a la página de caja
-            request.getRequestDispatcher("/WEB-INF/jsp/caja.jsp").forward(request, response);
+            if (!carrito.getListaCDs().isEmpty()) {
+                request.getRequestDispatcher("/WEB-INF/jsp/caja.jsp").forward(request, response);
+            } else {
+                request.getRequestDispatcher(
+                        "/WEB-INF/jsp/carritoCompra.jsp").forward(request, response);
+            }
         }
     }
 
@@ -44,16 +54,16 @@ public class SvCarritoCompra extends HttpServlet {
                 if (indiceEliminar >= 0 && indiceEliminar < carrito.getListaCDs().size()) {
                     // Eliminar el CD del carrito
                     carrito.eliminarCD(indiceEliminar);
-                    Double total = (Double) session.getAttribute("total");
-                    if (total != null) {
-                        total = carrito.calcularImporteTotal(carrito);
-                    }
+                    Double total = carrito.calcularImporteTotal(carrito);
+                    session.setAttribute("total", total);
+
                 }
             }
         }
 
         // Volver a cargar la página del carrito usando forward en lugar de sendRedirect
-        request.getRequestDispatcher("/WEB-INF/jsp/carritoCompra.jsp").forward(request, response);
+        request.getRequestDispatcher(
+                "/WEB-INF/jsp/carritoCompra.jsp").forward(request, response);
     }
 
 }

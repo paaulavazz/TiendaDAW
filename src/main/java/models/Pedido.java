@@ -12,15 +12,39 @@ import java.io.Serializable;
  */
 public class Pedido implements Serializable {
 
-    private double importe;
+    private int id;
     private Usuario usuarioComprador;
+    private double importe;
 
     public Pedido() {
 
     }
 
-    public Pedido(double importe, Usuario usuarioComprador) {
+    public Pedido(Usuario usuarioComprador, double importe) {
+        this.usuarioComprador = usuarioComprador;
         this.importe = importe;
+    }
+
+    public Pedido(int id, Usuario usuarioComprador, double importe) {
+        this.id = id;
+        this.usuarioComprador = usuarioComprador;
+        this.importe = importe;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
+    public Usuario getUsuarioComprador() {
+        return usuarioComprador;
+    }
+
+    public void setUsuarioComprador(Usuario usuarioComprador) {
         this.usuarioComprador = usuarioComprador;
     }
 
@@ -31,13 +55,4 @@ public class Pedido implements Serializable {
     public void setImporte(double importe) {
         this.importe = importe;
     }
-
-    public Usuario getUsuarioComprador() {
-        return usuarioComprador;
-    }
-
-    public void setUsuarioComprador(Usuario usuarioComprador) {
-        this.usuarioComprador = usuarioComprador;
-    }
-
 }

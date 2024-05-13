@@ -10,21 +10,38 @@ import java.io.Serializable;
  *
  * @author sergio
  */
-public class Usuario implements Serializable{
+public class Usuario implements Serializable {
 
+    private int id;
     private String correoElectronico;
     private String contrasena;
     private String tipoTarjeta;
-    private int numTarjeta;
+    private String numTarjeta;
 
     public Usuario() {
     }
 
-    public Usuario(String correoElectronico, String contrasena, String tipoTarjeta, int numTarjeta) {
+    public Usuario(String correoElectronico, String contrasena, String tipoTarjeta, String numTarjeta) {
         this.correoElectronico = correoElectronico;
         this.contrasena = contrasena;
         this.tipoTarjeta = tipoTarjeta;
         this.numTarjeta = numTarjeta;
+    }
+
+    public Usuario(int id, String correoElectronico, String contrasena, String tipoTarjeta, String numTarjeta) {
+        this.id = id;
+        this.correoElectronico = correoElectronico;
+        this.contrasena = contrasena;
+        this.tipoTarjeta = tipoTarjeta;
+        this.numTarjeta = numTarjeta;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getCorreoElectronico() {
@@ -51,11 +68,11 @@ public class Usuario implements Serializable{
         this.tipoTarjeta = tipoTarjeta;
     }
 
-    public int getNumTarjeta() {
+    public String getNumTarjeta() {
         return numTarjeta;
     }
 
-    public void setNumTarjeta(int numTarjeta) {
+    public void setNumTarjeta(String numTarjeta) {
         this.numTarjeta = numTarjeta;
     }
 
