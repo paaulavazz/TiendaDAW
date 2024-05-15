@@ -1,8 +1,12 @@
+<%-- 
+    Document   : caja
+    Author     : Paula Vázquez Tella
+--%>
 <%@page import="models.Carrito"%>
 <%@page import="java.util.List"%>
 <%@page import="models.CD"%>
-<%@page import="java.text.DecimalFormat"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<jsp:useBean id="formateador" class="util.FormateadorDecimal" />
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -73,7 +77,7 @@
                             <tr>
                                 <td class="titulo-cd">${cd.nombre} | ${cd.artista} | ${cd.pais} | $${cd.precio}</td>
                                 <td class="col-cantidad">${cd.cantidad}</td>
-                                <td class="col-precio">${cd.cantidad * cd.precio}</td>
+                                <td class="col-precio">${formateador.darFormato(cd.cantidad * cd.precio)}</td>
                                 <td class="col-radio">
                                     <input type="radio" name="eliminar" value="${loop.index}"> <!-- Pasando el índice como valor -->
                                 </td>
@@ -83,7 +87,7 @@
                     <tr>
                         <td colspan="1" class="celda-sin-borde"></td>
                         <td colspan="1" class="suma-total">IMPORTE TOTAL</td>
-                        <td colspan="1" class="cantidad-total">${total}<td>
+                        <td colspan="1" class="cantidad-total">${formateador.darFormato(total)}<td>
 
                         <td colspan="1" align="center">
                     <c:if test="${not empty carrito.listaCDs}">

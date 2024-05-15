@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package models;
 
 import java.io.Serializable;
@@ -38,7 +34,6 @@ public class Pedido implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
-
 
     public Usuario getUsuarioComprador() {
         return usuarioComprador;

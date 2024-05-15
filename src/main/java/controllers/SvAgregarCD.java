@@ -45,7 +45,16 @@ public class SvAgregarCD extends HttpServlet {
             carrito = new Carrito();
             session.setAttribute("carrito", carrito);
         }
-        carrito.agregarCD(cd);
+        boolean presente = false;
+        for (CD c : carrito.getListaCDs()) {
+            if (c.getNombre().equals(nombreCD)) {
+                presente = true;
+                c.setCantidad(c.getCantidad() + cantidad);
+            }
+        }
+        if (!presente) {
+            carrito.agregarCD(cd);
+        }
 
         // Calcular el importe total del carrito
         Double total = carrito.calcularImporteTotal(carrito);

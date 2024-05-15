@@ -1,5 +1,9 @@
-<%@page import="java.text.DecimalFormat"%>
+<%-- 
+    Document   : caja
+    Author     : Paula Vázquez Tella
+--%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<jsp:useBean id="formateador" class="util.FormateadorDecimal" />
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,13 +17,16 @@
                 display: inline-block;
                 margin: 0 10px; /* Espacio entre las imágenes */
             }
-            .image-container img {
+            .image-container img,input {
                 display: block;
                 margin: 0 auto; /* Centrar la imagen horizontalmente */
                 border: 2px solid transparent; /* Añade un borde transparente por defecto */
                 transition: border-color 0.3s; /* Transición suave para el cambio de color del borde */
             }
             .image-container img:hover {
+                border-color: black; /* Cambia el color del borde a negro cuando se pasa el ratón por encima */
+            }
+            .image-container input:hover {
                 border-color: black; /* Cambia el color del borde a negro cuando se pasa el ratón por encima */
             }
             .short-hr {
@@ -38,24 +45,24 @@
                 <td colspan="3"><b>TOTAL A PAGAR</b></td>
             </tr>
             <tr>
-                <td colspan="3" style="text-align: center;">${total}</td>
+                <td colspan="3" style="text-align: center;">${formateador.darFormato(total)}</td>
             </tr>
         </table>
     </center>
     <br>
-
     <hr class="short-hr">
     <div class="centered">
-        <div class="image-container">
-            <form action="SvCaja" method="post">
-                <!-- Aquí colocamos la imagen dentro del input de tipo "image" -->
-                <input type="image" src="./imagenes/musica.gif" alt="Pagar y volver a la página principal" name="submitBtn">
-                <br>
-                Pagar y volver a la página principal
-            </form>
-
-
-        </div>
+        <form action="SvCaja" method="post">
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" name="email">
+            <br>
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" >
+            <br>
+            <button type="submit" name="accion" value="iniciarSesion">Iniciar sesión</button>
+            <button type="submit" name="accion" value="cancelar">Cancelar</button>
+            <br>
+        </form>
     </div>
     <hr class="short-hr">
 </body>
